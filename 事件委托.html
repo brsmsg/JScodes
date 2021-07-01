@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="list">
+    <button>btn1</button>
+    <button>btn2</button>
+    <button>btn3</button>
+  </div>
+
+  <script>
+    let ul = document.querySelector('#list');
+
+    ul.addEventListener('click', (e) => {
+      let curtarget = e.currentTarget;
+      let target = e.target;
+
+
+      if (target) {
+        console.log(target.innerHTML);
+        console.log(curtarget.children);
+        console.log(target.);
+        console.log(target.parentNode);
+        const index = Array.from(curtarget.children).indexOf(target);
+        console.log(index);
+      }
+    })
+  </script>
+</body>
+
+</html>

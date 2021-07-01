@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    function getJSONP(url, data = {}, callback) {
+
+      // 转化数据为url字符串
+      let dataStr = url.indexOf('?') === -1 ? '?' : '&';
+      for (let key in data) {
+        dataStr += `${key}=${data[key]}&`;
+      }
+
+      // 处理url中的回调函数
+      let cb_name = 'jsonpCallback';
+      dataStr += 'callback' + cb_name;
+
+      let scriptBody = document.createElement('script');
+      scriptBody.src = url + dataStr
+
+      // 全局对象上挂载回调
+      window[cb_name] = function (data) {
+        callback(data);
+        // 执行完回调后移除创建的script标签
+        document.body.removeChild(scriptBody)
+      }
+
+      // append到页面中 添加到页面立刻发起请求
+      // 该插入操作发起请求！
+      document.body.append(scriptBody);
+    }
+  </script>
+</body>
+
+</html>

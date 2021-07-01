@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>closure</head>
+
+<script>
+  // for (var i = 1; i <= 10; i++) {
+  //   setTimeout(function () {
+  //     console.log(i, new Date());
+  //   }, 1000)
+  // }
+
+  // for (var i = 1; i <= 10; i++) {
+  //   (function (j) {
+  //     setTimeout(function () {  
+  //       console.log(j, new Date());
+  //     }, 1000 * j)
+  //   })(i);
+  // }
+
+  function repeat(func, times, wait) {
+    return function (args) {
+      for (let i = 0; i < times; i++) {
+        setTimeout(() => {
+          func(args, new Date());
+        }, wait * i);
+      }
+    }
+  }
+
+  const repeatFunc = repeat(console.log, 4, 3000);
+
+  repeatFunc("helloWorld");
+</script>
+
+</html>
