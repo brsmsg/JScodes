@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="left"></div>
+      <!-- 放前面，否则受前面block元素影响换行 -->
+      <div class="right"></div>
+      <div class="mid"></div>
+    </div>
+  </body>
+  <style>
+    .wrapper {
+      background-color: #eee;
+      height: 500px;
+      width: 100%;
+    }
+    .left {
+      width: 200px;
+      height: 100%;
+      background-color: aqua;
+      float: left;
+    }
+    .mid {
+      background-color: red;
+      height: 100%;
+      margin-left: 200px;
+      margin-right: 400px;
+    }
+    .right {
+      width: 400px;
+      height: 100%;
+      background-color: blue;
+      float: right;
+    }
+  </style>
+</html>
