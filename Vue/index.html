@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="msg">{{msg}}</div>
+    <button class="btn">change</button>
+  </body>
+  <script src="./reactive.js"></script>
+  <script>
+    // 定义响应式变量
+    const state = reactive({
+      msg: "message",
+    });
+
+    document.querySelector(".btn").addEventListener("click", () => {
+      setInterval(() => {
+        console.log(new Date().getTime());
+        state.msg = new Date().getTime();
+      }, 1000);
+    });
+
+    // 定义使用到响应式的函数
+    function updateDom(time) {
+      console.log("executed");
+      document.querySelector(".msg").innerHTML = state.msg;
+    }
+
+    // 先执行一次effect收集依赖
+    effect(updateDom);
+  </script>
+</html>
