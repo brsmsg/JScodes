@@ -2,8 +2,9 @@ function debounce(fn, delay) {
   let timer;
   let that = this;
   return function (...args) {
+    clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.call(that, args);
+      fn.call(that, ...args);
     }, delay);
   };
 }

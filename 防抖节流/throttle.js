@@ -2,10 +2,10 @@
 function throttle1(fn, delay) {
   let timer;
   let that = this;
-  return function () {
+  return function (...args) {
     if (!timer) {
       timer = setTimeout(() => {
-        fn.call(that);
+        fn.call(that, args);
         timer = null;
       }, delay);
     }
@@ -30,4 +30,4 @@ let boom = function () {
 };
 
 // setInterval(throttle1(boom, 1000), 100);
-setInterval(throttle1(boom, 1000), 100);
+setInterval(throttle1(boom, 1000), 2000);

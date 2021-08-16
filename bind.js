@@ -1,7 +1,7 @@
 Function.prototype.newBind = function (obj, ...args) {
-  let that = this;
-  return function (...arguments) {
-    that.call(obj, ...args, ...arguments);
+  let newFun = this;
+  return function () {
+    newFun.call(obj, ...args);
   };
 };
 
@@ -16,5 +16,5 @@ function bar(arg1, arg2) {
 }
 
 // var newBar = bar.bind(foo);
-var newBar = bar.newBind(foo, 1);
+var newBar = bar.newBind(foo, 1, 5);
 newBar(2);

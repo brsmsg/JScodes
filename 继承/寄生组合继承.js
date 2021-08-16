@@ -16,8 +16,7 @@ function inheritPrototype(sub, sup) {
   // sub.prototype = Object.create(sup.prototype);
   sub.prototype = object(sup.prototype);
   // 重写constructor 指向父类形
-  sub.prototype.constructor = sup;
-  console.log(sub.prototype.constructor);
+  sub.prototype.constructor = sub;
 }
 
 function object(obj) {
@@ -26,11 +25,12 @@ function object(obj) {
   return new F();
 }
 
-inheritPrototype(SubType, SuperType);
+// inheritPrototype(SubType, SuperType);
+SubType.prototype = Object.create(SuperType);
+SubType.prototype.constructor = SubType;
 
 let p = new SuperType("kbh");
 let c = new SubType("KBH", 22);
 
 p.getName();
 c.getName();
-

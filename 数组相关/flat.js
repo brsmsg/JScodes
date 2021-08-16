@@ -6,8 +6,7 @@ const flat = (arr) => {
     } else {
       res.push(item);
     }
-  });
-
+  })
   return res;
 }
 

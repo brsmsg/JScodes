@@ -1,26 +1,20 @@
-/*
-  实现一个 add 方法，使计算结果能够满足以下预期：
-  add(1)(2)(3) = 6;
-  add(1, 2, 3)(4) = 10;
-  add(1)(2)(3)(4)(5) = 15;
- */
-
-function add(...args) {
-  const _args = args;
-  let caculate = function () {
-    _args.push(...arguments);
-    return caculate;
-  }
-
-  caculate.toString = function () {
-    return _args.reduce((prev, cur) => prev + cur);
-  }
-
-  return caculate;
+function curry(fn, ...args1) {
+  const that = this;
+  return function (...args2) {
+    const args = [...args1, ...args2];
+    if (args.length >= fn.length) {
+      return fn.call(that, ...args);
+    } else {
+      return curry.call(that, fn, ...args);
+    }
+  };
 }
 
-console.log(add(1)(2)(3).toString());
-console.log(add(1, 2, 3)(4));
-console.log(add(1)(2)(3)(4)(5));
+function sum(a, b, c) {
+  return a + b + c;
+}
 
-add(1)
+let sumFn = curry(sum);
+
+console.log(sumFn(1)(2)(3));
+console.log(sumFn(1)(2, 3));

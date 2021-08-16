@@ -1,8 +1,12 @@
 Array.prototype.newMap = function (fn) {
-  return this.reduce((acc, cur) => {
-    acc.push(fn(cur));
-    return acc
-  }, [])
-}
+  return this.reduce((prev, cur) => {
+    prev.push(fn(cur));
+    return prev;
+  }, []);
+};
 
-console.log([1, 2, 3].newMap((item) => { return item += 1 }));
+console.log(
+  [1, 2, 3].newMap((item) => {
+    return (item += 1);
+  })
+);

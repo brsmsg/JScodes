@@ -6,40 +6,43 @@
 Promise.myAll = (arr) => {
   return new Promise((resolve, reject) => {
     let index = 0;
-    let result = []
+    let result = [];
     for (let i = 0; i < arr.length; i++) {
-      arr[i].then((res) => {
-        index++;
-        result.push(res);
-        if(index === arr.length){
-          resolve(result);
-        }
-      },
+      arr[i].then(
+        (res) => {
+          index++;
+          result.push(res);
+          if (index === arr.length) {
+            resolve(result);
+          }
+        },
         (rej) => {
-          reject(rej)
-        })
+          reject(rej);
+        }
+      );
     }
-  })
-}
-
+  });
+};
 
 // 测试
 const a = new Promise((resolve) => {
   setTimeout(() => {
     resolve(500);
   }, 500);
-})
+});
 
 const b = new Promise((resolve, reject) => {
   setTimeout(() => {
     resolve(1000);
     // reject('reject')
   }, 1000);
-})
+});
 
-Promise.myAll([a, b]).then((res) => {
-  console.log(res);
-}, (err) => {
-  console.log(err);
-}
-)
+Promise.myAll([a, b]).then(
+  (res) => {
+    console.log(res);
+  },
+  (err) => {
+    console.log(err);
+  }
+);
